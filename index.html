@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversário da Manuela</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="scripts.js"></script>
+</head>
+<body>
+
+    <header>
+        <p class="data">15 . AGOSTO . 2026</p>
+        <h1>Manuela Menezes</h1>
+        <p>Comemorando meu 7º ano!</p>
+    </header>
+
+    <div class="container">
+        <h3>Confirmar Presença</h3>
+        <p style="font-size: 0.8rem; margin-bottom: 25px;">Por favor, confirme até 10/06</p>
+        
+        <form id="rsvp-form">
+            <div class="input-group">
+                <label>Nome Completo</label>
+                <input type="text" id="nome" required placeholder="Informe seu nome">
+            </div>
+            <div class="input-group">
+                <label>WhatsApp</label>
+                <input type="text" id="whatsapp" required placeholder="Informe seu WhatsApp">
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Informe seu email">
+            </div>
+            <div class="input-group">
+                <label>Vai conseguir ir?</label>
+                <select id="presenca">
+                    <option value="sim">Sim, com certeza!</option>
+                    <option value="nao">Infelizmente não poderei</option>
+                </select>
+            </div>
+            <div id="acompanhantes-container">
+</div>
+
+<button type="button" onclick="addAcompanhante()" 
+        style="background: none; color: var(--primary); border: 1px dashed var(--primary); margin-top: 10px; font-size: 0.8rem;">
+    + Adicionar acompanhante
+</button>
+            <button type="submit" id="btn-enviar">Confirmar Presença</button>
+        </form>
+
+        <div style="margin-top: 40px; text-align: left;">
+    <h4 style="margin-bottom: 15px; color: var(--primary);">📍 Onde será?</h4>
+    <p style="font-size: 0.9rem; margin-bottom: 10px;">
+        <strong>Buffet The Falls</strong><br>
+        Av. Dr. Antônio Carlos Couto de Barros, 997 - Campinas/SP
+    </p>
+<div class="map-container" style="margin-top: 30px; text-align: left;">
+    <h4 style="margin-bottom: 15px; color: var(--primary);">📍 Local da Festa</h4>
+    <p style="font-size: 0.85rem; margin-bottom: 12px;">Buffet The Falls - Campinas/SP</p>
+    
+    <a href="https://maps.app.goo.gl/VxEcZ9gNRsGqoyEy5" target="_blank" style="text-decoration: none;">
+        <div style="position: relative; border-radius: 15px; overflow: hidden; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <img src="./assets/local.png" alt="Mapa" style="width: 100%; display: block; filter: brightness(0.9);">
+            
+            <div style="position: absolute; bottom: 10px; right: 10px; background: white; padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); color: #4285F4;">
+                Toque para abrir o GPS ↗
+            </div>
+        </div>
+    </a>
+
+    <a href="https://maps.app.goo.gl/VxEcZ9gNRsGqoyEy5" target="_blank" 
+       style="display: block; text-align: center; margin-top: 10px; font-size: 0.8rem; color: #4285F4; text-decoration: none;">
+       Abrir no Google Maps →
+    </a>
+</div>
+
+<h4 style="margin: 40px 0 20px; color: var(--primary);">🎁 Sugestões de Presente</h4>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+
+    <div class="gift-card" onclick="openPixWithValue('Boneca Elsa', '105,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/elsa.png" alt="Boneca Elsa" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Boneca Elsa</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 105,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Kit Barbie', '67,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/barbie.png" alt="Kit Barbie" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Kit Barbie</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 67,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Cabana', '177,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/cabana.png" alt="Cabana" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Cabana</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 177,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Hoverboard Elétrico', '590,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/hoverboard.png" alt="Hoverboard Elétrico" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Hoverboard Elétrico</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 590,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Bike', '520,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/bike.png" alt="Cota: Bike 7 anos+" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Cota: Bike 7 anos+</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 520,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Cota Primeira Viagem', '250,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/viagem.png" alt="Cota: Viagem da Manu" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Cota: Viagem da Manu</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 250,00</span>
+    </div>
+    
+    <div class="gift-card" onclick="openPixWithValue('Faculdade', '1000,00')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/faculdade.png" alt="Valor Livre" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Faculdade 🤣</p>
+        <span style="font-size: 0.75rem; color: #999;">R$ 1000,00</span>
+    </div>
+
+    <div class="gift-card" onclick="openPixWithValue('Qualquer Valor', 'Livre')" 
+         style="border: 1px solid #f9f9f9; padding: 15px; border-radius: 12px; background: #fafafa; cursor: pointer;">
+        <div style="width: 100%; max-width: 320px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px;">
+            <img src="./assets/livre.png" alt="Valor Livre" style="width: 100%; height: auto; display: block;">
+        </div>
+        <p style="font-size: 0.8rem; font-weight: bold;">Valor Livre</p>
+        <span style="font-size: 0.75rem; color: #999;">Coração</span>
+    </div>
+
+</div>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+        
+        <p>Quer nos presentear?</p>
+        <button onclick="openPix()" style="background: #f1f1f1; color: #555; margin-top: 10px;">Ver Chave PIX</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePix()"></div>
+    <div id="pix-modal" style="text-align: center; max-width: 320px; width: 90%;">
+        
+        <h4 id="pix-titulo-presente" style="color: var(--primary); margin-bottom: 5px; font-size: 1.1rem;">Presente da Manu</h4>
+        <div style="margin: 15px auto; max-width: 180px; padding: 10px; background: white; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+            <img src="./assets/qr-pix.png" alt="QR Code PIX" style="width: 100%; display: block;">
+        </div>
+        <p id="pix-valor-presente" style="font-weight: bold; color: var(--secondary); font-size: 1.2rem; margin-bottom: 15px;"></p>
+        
+        <p style="font-size: 0.8rem; margin: 10px 0 5px;">Chave PIX (E-mail):</p>
+        <strong id="pix-chave" style="display: block; font-size: 0.85rem; color: var(--secondary); background: #fdfdfd; padding: 8px; border-radius: 6px; border: 1px dashed #eee;">manu06menezes@outlook.com</strong>
+        
+        <button onclick="copyPix()" style="margin-top: 15px; font-size: 0.8rem; padding: 10px 20px; width: 100%;">Copiar Chave Copia e Cola</button>
+    </div>
+
+<div class="overlay" id="overlay-sucesso" onclick="closeSucesso()"></div>
+<div id="sucesso-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 35px 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 101; text-align: center; max-width: 320px; width: 90%;">
+    <div style="font-size: 3.5rem; margin-bottom: 15px; animation: pop 0.3s ease;">🎉</div>
+    <h4 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 10px;">Presença Confirmada!</h4>
+    <p style="font-size: 0.85rem; color: var(--secondary); margin-bottom: 25px; line-height: 1.4;">Prontinho! Mal podemos esperar para comemorar o niver da Manu com você! 🥰</p>
+    <button onclick="closeSucesso()" style="background: var(--primary); color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%;">Fechar</button>
+</div>
+
+
+</body>
+</html>
